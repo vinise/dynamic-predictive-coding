@@ -1,0 +1,6 @@
+/.idea/
+/data/
+/experiments/
+data-*.zip
+experiments-*.zip
+reverse_corr-002.npy

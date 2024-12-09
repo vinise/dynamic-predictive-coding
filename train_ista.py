@@ -13,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 import utils
 from evaluation import evaluate
-from models.predictive_coding_single import DynPredNet as SingleNet
+# from models.predictive_coding_single import DynPredNet as SingleNet
 from models.predictive_coding_ista import DynPredNet
 import models.data_loader as data_loader
 
@@ -227,11 +227,12 @@ if __name__ == '__main__':
             optim.Adam(model.hypernet.parameters(), params.learning_rate_t)
         ]
     else:
-        model = SingleNet(params, device).to(device)
-        optimizer = [
-            optim.SGD(model.spatial_decoder.parameters(), params.learning_rate_s),
-            optim.Adam(model.temporal.parameters(), params.learning_rate_t),
-        ] 
+        print("ERROR")
+        # model = SingleNet(params, device).to(device)
+        # optimizer = [
+        #     optim.SGD(model.spatial_decoder.parameters(), params.learning_rate_s),
+        #     optim.Adam(model.temporal.parameters(), params.learning_rate_t),
+        # ]
 
     scheduler = [ExponentialLR(optimizer[0], gamma=params.learning_rate_gamma)] + \
         [ExponentialLR(opt, gamma=params.learning_rate_gamma-0.03) for opt in optimizer[1:]]
